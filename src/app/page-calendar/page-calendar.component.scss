@@ -15,4 +15,13 @@
   background-color: aquamarine;
 }
 
+._hours-schedule-wr {
+  width: 20%;
+  overflow-x: hidden;
+  background-color: cornflowerblue;
+  .hour {
+    min-height: 40px;
+  }
+}
+
 

@@ -3,6 +3,7 @@ import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {getDayName, getDaysInMonthUTC, getMonthList, getMonthName} from "../utils/date.utils";
 import {FitnessDay} from "../day/fitnessDay";
+import {Time} from "@angular/common";
 
 @Component({
   selector: 'app-page-calendar',
@@ -14,6 +15,7 @@ export class PageCalendarComponent implements OnInit {
   public months: string[] = [];
   public currentMonth: string = '';
   public currentMonthDays: FitnessDay[] = [];
+  public hoursSchedule: Time[] = [];
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings.svg'));
@@ -24,6 +26,9 @@ export class PageCalendarComponent implements OnInit {
     this.months = getMonthList();
     this.currentMonth = getMonthName(now);
     this.currentMonthDays = this.getFitnessDays(now);
+    for(let i=0; i<24; i++) {
+      this.hoursSchedule.push({hours: i, minutes: 0})
+    }
     console.log(this.currentMonth);
     console.log(this.currentMonthDays);
   }
