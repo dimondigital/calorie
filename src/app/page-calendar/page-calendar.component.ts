@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
+import {getDayName, getDaysInMonthUTC, getMonthList, getMonthName} from "../utils/date.utils";
+import {FitnessDay} from "../day/fitnessDay";
 
 @Component({
   selector: 'app-page-calendar',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageCalendarComponent implements OnInit {
 
-  constructor() { }
+  public months: string[] = [];
+  public currentMonth: string = '';
+  public currentMonthDays: FitnessDay[] = [];
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings.svg'));
+  }
 
   ngOnInit(): void {
+    const now: Date = new Date();
+    this.months = getMonthList();
+    this.currentMonth = getMonthName(now);
+    this.currentMonthDays = this.getFitnessDays(now);
+    console.log(this.currentMonth);
+    console.log(this.currentMonthDays);
   }
+
+  getFitnessDays(now: Date): FitnessDay[] {
+    let days: Date[] = getDaysInMonthUTC(now.getUTCMonth(), now.getUTCFullYear());
+    let fitnessDays: FitnessDay[] = [];
+    for (let d of days) {
+      fitnessDays.push({
+        date: d,
+        kcal: {current: 1000, norm: 2000},
+        dayTitle: getDayName(d)
+      })
+    }
+    return fitnessDays;
+  }
+
 
 }

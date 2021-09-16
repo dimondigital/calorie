@@ -1,3 +1,34 @@
-<div class="page _background-logo">
-  <span>content</span>
+<div class="page calendar">
+  <div class="_background-logo"></div>
+
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div fxLayout="column" class="_settings-wr">
+        <mat-icon svgIcon="settings" class="mat-icon"></mat-icon>
+        <mat-form-field appearance="fill">
+          <mat-select [(value)]="currentMonth">
+            <mat-option *ngFor="let m of months" [value]="m">{{m}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="auto" class="_days-wr">
+        <div style="overflow-y: hidden;" fxLayout="row">
+        <ng-container *ngFor="let d of currentMonthDays">
+          <div style="min-width: 14.2857%" fxLayout="column">
+            <span>{{d.kcal.current}}</span>
+            <span>{{d.date.getDate()}}</span>
+            <span>{{d.dayTitle}}</span>
+          </div>
+        </ng-container>
+        </div>
+      </div>
+
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="50px">3</div>
+      <div fxFlex="auto">4</div>
+    </div>
+  </div>
+
 </div>
