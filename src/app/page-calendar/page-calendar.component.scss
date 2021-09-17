@@ -13,14 +13,28 @@
 ._days-wr {
   overflow: hidden;
   background-color: aquamarine;
+  .day {
+    border: 1px solid gray;
+    min-width: 52px;
+  }
 }
 
 ._hours-schedule-wr {
-  width: 20%;
   overflow-x: hidden;
   background-color: cornflowerblue;
   .hour {
     min-height: 40px;
+    border: 1px solid gray;
+  }
+}
+
+._total-schedule-wr {
+  overflow: scroll;
+  background-color: rgba(165 214 183 / 50%);
+  .hour {
+    width: 50px;
+    min-height: 40px;
+    border: 1px solid gray;
   }
 }
 

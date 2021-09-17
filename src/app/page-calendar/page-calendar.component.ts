@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {getDayName, getDaysInMonthUTC, getMonthList, getMonthName} from "../utils/date.utils";
@@ -10,14 +10,17 @@ import {Time} from "@angular/common";
   templateUrl: './page-calendar.component.html',
   styleUrls: ['./page-calendar.component.scss', '../app.component.scss']
 })
-export class PageCalendarComponent implements OnInit {
+export class PageCalendarComponent implements OnInit, AfterViewInit {
 
   public months: string[] = [];
   public currentMonth: string = '';
   public currentMonthDays: FitnessDay[] = [];
   public hoursSchedule: Time[] = [];
+  @ViewChild('wrapperDays') wrapperDays!: ElementRef;
+  @ViewChild('wrapperSchedule') wrapperSchedule!: ElementRef;
+  @ViewChild('wrapperHours') wrapperHours!: ElementRef;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private renderer: Renderer2) {
     iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings.svg'));
   }
 
@@ -31,6 +34,21 @@ export class PageCalendarComponent implements OnInit {
     }
     console.log(this.currentMonth);
     console.log(this.currentMonthDays);
+  }
+
+  ngAfterViewInit() {
+    let wrDays = this.renderer.listen(this.wrapperDays.nativeElement, 'scroll', (evt) => {
+     this.wrapperSchedule.nativeElement.scrollLeft = evt.target.scrollLeft;
+    });
+
+    let wrHours = this.renderer.listen(this.wrapperHours.nativeElement, 'scroll', (evt) => {
+      this.wrapperSchedule.nativeElement.scrollTop = evt.target.scrollTop;
+    });
+
+    let wrSchedule = this.renderer.listen(this.wrapperSchedule.nativeElement, 'scroll', (evt) => {
+      this.wrapperDays.nativeElement.scrollLeft = evt.target.scrollLeft;
+      this.wrapperHours.nativeElement.scrollTop = evt.target.scrollTop;
+    });
   }
 
   getFitnessDays(now: Date): FitnessDay[] {
