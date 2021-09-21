@@ -4,7 +4,9 @@
   <div fxLayout="column" style="height: 100vh; overflow: hidden;">
     <div fxLayout="row">
       <div fxLayout="column" class="_settings-wr">
-        <mat-icon svgIcon="settings" class="mat-icon"></mat-icon>
+        <a [routerLink]="['/settings']">
+          <mat-icon svgIcon="settings" class="mat-icon"></mat-icon>
+        </a>
         <mat-form-field appearance="fill">
           <mat-select [(value)]="currentMonth">
             <mat-option *ngFor="let m of months" [value]="m">{{m}}</mat-option>
@@ -15,11 +17,13 @@
       <div fxFlex="auto" class="_days-wr">
         <div #wrapperDays style="overflow-y: hidden;" fxLayout="row">
           <ng-container *ngFor="let d of currentMonthDays">
-            <div class="day" fxLayout="column">
-              <span>{{d.kcal.current}}</span>
-              <span>{{d.date.getDate()}}</span>
-              <span>{{d.dayTitle}}</span>
-            </div>
+            <a class="day" [routerLink]="['/daily']">
+              <div fxLayout="column">
+                <span>{{d.kcal.current}}</span>
+                <span>{{d.date.getDate()}}</span>
+                <span>{{d.dayTitle}}</span>
+              </div>
+            </a>
           </ng-container>
         </div>
       </div>
@@ -27,17 +31,19 @@
     </div>
     <div fxLayout="row" style="overflow: hidden; min-height: 100vh;">
       <div #wrapperHours fxLayout="column" fxFlex="20" class="_hours-schedule-wr">
-          <ng-container *ngFor="let h of hoursSchedule">
+        <ng-container *ngFor="let h of hoursSchedule">
             <span class="hour">
               <ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0
             </span>
-          </ng-container>
+        </ng-container>
       </div>
       <div #wrapperSchedule fxFlex="80" class="_total-schedule-wr" fxLayout="row">
         <ng-container *ngFor="let d of currentMonthDays">
           <div fxLayout="column" style="min-width: 14.2857%;">
             <ng-container *ngFor="let h of hoursSchedule">
-              <div class="hour"></div>
+              <a class="hour" [routerLink]="['/meal']">
+                <div></div>
+              </a>
             </ng-container>
           </div>
         </ng-container>

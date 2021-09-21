@@ -15,7 +15,7 @@
   background-color: aquamarine;
   .day {
     border: 1px solid gray;
-    min-width: 14.2857%;
+    min-width: calc(14.2857% - 2px);
   }
 }
 

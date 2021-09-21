@@ -32,11 +32,12 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     for(let i=0; i<24; i++) {
       this.hoursSchedule.push({hours: i, minutes: 0})
     }
-    console.log(this.currentMonth);
-    console.log(this.currentMonthDays);
+    // console.log(this.currentMonth);
+    // console.log(this.currentMonthDays);
   }
 
   ngAfterViewInit() {
+    //TODO: remove listeners
     const wrDays = this.renderer.listen(this.wrapperDays.nativeElement, 'scroll', (evt) => {
      this.wrapperSchedule.nativeElement.scrollLeft = evt.target.scrollLeft;
     });

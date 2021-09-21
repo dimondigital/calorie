@@ -6,6 +6,7 @@ import {FlexModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {MatSelectModule} from "@angular/material/select";
   ],
   imports: [
     CommonModule,
+    SharedModule,
     PageCalendarRoutingModule,
     FlexModule,
     HttpClientModule,
