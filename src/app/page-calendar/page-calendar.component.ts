@@ -37,15 +37,15 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let wrDays = this.renderer.listen(this.wrapperDays.nativeElement, 'scroll', (evt) => {
+    const wrDays = this.renderer.listen(this.wrapperDays.nativeElement, 'scroll', (evt) => {
      this.wrapperSchedule.nativeElement.scrollLeft = evt.target.scrollLeft;
     });
 
-    let wrHours = this.renderer.listen(this.wrapperHours.nativeElement, 'scroll', (evt) => {
+    const wrHours = this.renderer.listen(this.wrapperHours.nativeElement, 'scroll', (evt) => {
       this.wrapperSchedule.nativeElement.scrollTop = evt.target.scrollTop;
     });
 
-    let wrSchedule = this.renderer.listen(this.wrapperSchedule.nativeElement, 'scroll', (evt) => {
+    const wrSchedule = this.renderer.listen(this.wrapperSchedule.nativeElement, 'scroll', (evt) => {
       this.wrapperDays.nativeElement.scrollLeft = evt.target.scrollLeft;
       this.wrapperHours.nativeElement.scrollTop = evt.target.scrollTop;
     });

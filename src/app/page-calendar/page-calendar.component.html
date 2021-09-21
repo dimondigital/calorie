@@ -1,7 +1,7 @@
 <div class="page calendar">
   <div class="_background-logo"></div>
 
-  <div fxLayout="column" style="max-height: 100vh; overflow: hidden;">
+  <div fxLayout="column" style="height: 100vh; overflow: hidden;">
     <div fxLayout="row">
       <div fxLayout="column" class="_settings-wr">
         <mat-icon svgIcon="settings" class="mat-icon"></mat-icon>
@@ -25,17 +25,19 @@
       </div>
 
     </div>
-    <div fxLayout="row" style="overflow: hidden;">
+    <div fxLayout="row" style="overflow: hidden; min-height: 100vh;">
       <div #wrapperHours fxLayout="column" fxFlex="20" class="_hours-schedule-wr">
           <ng-container *ngFor="let h of hoursSchedule">
-            <span class="hour"><ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0</span>
+            <span class="hour">
+              <ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0
+            </span>
           </ng-container>
       </div>
       <div #wrapperSchedule fxFlex="80" class="_total-schedule-wr" fxLayout="row">
         <ng-container *ngFor="let d of currentMonthDays">
-          <div fxLayout="column">
+          <div fxLayout="column" style="min-width: 14.2857%;">
             <ng-container *ngFor="let h of hoursSchedule">
-              <div style="min-width: 14.2857%" class="hour"></div>
+              <div class="hour"></div>
             </ng-container>
           </div>
         </ng-container>

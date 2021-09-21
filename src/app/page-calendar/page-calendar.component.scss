@@ -15,15 +15,17 @@
   background-color: aquamarine;
   .day {
     border: 1px solid gray;
-    min-width: 52px;
+    min-width: 14.2857%;
   }
 }
 
 ._hours-schedule-wr {
   overflow-x: hidden;
   background-color: cornflowerblue;
+  position: relative;
   .hour {
-    min-height: 40px;
+    min-height: 10%;
+    min-width: 14.2857%;
     border: 1px solid gray;
   }
 }
@@ -31,9 +33,10 @@
 ._total-schedule-wr {
   overflow: scroll;
   background-color: rgba(165 214 183 / 50%);
+  position: relative;
   .hour {
-    width: 50px;
-    min-height: 40px;
+    min-width: 100%;
+    min-height: 10%;
     border: 1px solid gray;
   }
 }
