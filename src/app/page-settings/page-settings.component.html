@@ -1,2 +1,48 @@
 <app-close-page-button></app-close-page-button>
-<h1>Personal settings</h1>
+<div fxFill style="padding:4%;">
+  <div fxFlex="100"
+       fxLayout="column" fxLayoutAlign="space-around space-around">
+    <h1>Personal settings</h1>
+    <section>
+      <label>Align:</label>
+      <mat-radio-group [(ngModel)]="genderToggle">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <mat-form-field>
+      <mat-label>Weight (kg)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Height (sm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <button>Calculate rate for day</button>
+    <div fxLayout="row" fxLayoutGap="6%">
+      <mat-form-field fxFlex="47">
+        <mat-label>Min kcal</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field fxFlex="47">
+        <mat-label>Max kcal</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Fats (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Proteins (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Carbohydrates (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <button>Save settings</button>
+  </div>
+</div>
+
+

@@ -1,2 +1,34 @@
 <app-close-page-button></app-close-page-button>
-<h1>New meal</h1>
+<div fxFill style="padding:4%;">
+  <div fxFlex="100"
+       fxLayout="column" fxLayoutAlign="space-around space-around">
+    <h1>New meal</h1>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="6%">
+      <mat-form-field fxFlex="47">
+        <mat-label>Kcal</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field fxFlex="47">
+        <mat-label>Time</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Fats (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Proteins (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Carbohydrates (gm)</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <input class="ng-hide" id="input-file-id" type="file"/>
+  </div>
+</div>

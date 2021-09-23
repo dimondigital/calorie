@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-settings.component.html',
   styleUrls: ['./page-settings.component.scss']
 })
-export class PageSettingsComponent implements OnInit {
+export class PageSettingsComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  public genderToggle: boolean = false;
 
 }
