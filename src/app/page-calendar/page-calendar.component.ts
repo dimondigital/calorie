@@ -14,6 +14,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
 
   public months: string[] = [];
   public currentMonth: string = '';
+  public currentDay: number = -1;
   public currentMonthDays: FitnessDay[] = [];
   public hoursSchedule: Time[] = [];
   @ViewChild('wrapperDays') wrapperDays!: ElementRef;
@@ -28,6 +29,8 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     const now: Date = new Date();
     this.months = getMonthList();
     this.currentMonth = getMonthName(now);
+    this.currentDay = now.getDate();
+    // this.currentDay = 30;
     this.currentMonthDays = this.getFitnessDays(now);
     for(let i=0; i<24; i++) {
       this.hoursSchedule.push({hours: i, minutes: 0})
@@ -50,6 +53,8 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
       this.wrapperDays.nativeElement.scrollLeft = evt.target.scrollLeft;
       this.wrapperHours.nativeElement.scrollTop = evt.target.scrollTop;
     });
+    // centering schedule and wrapperDays by current day
+    this.wrapperDays.nativeElement.scrollLeft = (this.wrapperDays.nativeElement.scrollWidth / this.currentMonthDays.length) * (this.currentDay-4);
   }
 
   getFitnessDays(now: Date): FitnessDay[] {

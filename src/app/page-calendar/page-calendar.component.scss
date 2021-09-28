@@ -1,5 +1,15 @@
-.mat-icon { width: 40px; }
-::ng-deep .mat-form-field { max-width: inherit; font-size: x-small; }
+.mat-icon {
+  width: 40px;
+  height: 40px;
+}
+a {
+  margin: 0 auto;
+}
+
+::ng-deep .mat-form-field {
+  max-width: inherit;
+  font-size: x-small;
+}
 
 .page .calendar {
   overflow: hidden;
@@ -7,38 +17,80 @@
 
 ._settings-wr {
   width: 20%;
-  background-color: bisque;
+  background-color: white;
 }
 
 ._days-wr {
   overflow: hidden;
-  background-color: aquamarine;
+  background-color: white;
+
+
+  div { // hidden scrollbar
+    height: 100%;
+    text-align: center;
+    color: black;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+
   .day {
-    border: 1px solid gray;
+    border: 1px solid white;
     min-width: calc(14.2857% - 2px);
+    text-decoration: none;
+    font-weight: 400;
   }
 }
 
 ._hours-schedule-wr {
   overflow-x: hidden;
-  background-color: cornflowerblue;
+  //background-color: rgba(255, 255, 255, 0);
+  color: #413F3F;
+  font-weight: 300;
+  font-size: 1.2em;
   position: relative;
+
+  &::-webkit-scrollbar {// hidden scrollbar
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   .hour {
-    min-height: 10%;
+    min-height: 8%;
     min-width: 14.2857%;
-    border: 1px solid gray;
+    text-align: center;
+    border: 1px solid white;
   }
 }
 
 ._total-schedule-wr {
   overflow: scroll;
-  background-color: rgba(165 214 183 / 50%);
+  background-color: rgba(255, 255, 255, 0);;
   position: relative;
+
+  &::-webkit-scrollbar {// hidden scrollbar
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   .hour {
     min-width: 100%;
-    min-height: 10%;
-    border: 1px solid gray;
+    min-height: 8%;
+    border: 1px solid #D8D5D5;
   }
+}
+
+.day__current {
+  background-color: #799CF4;
+  padding: 3px;
+  line-height: 100%;
+  border-radius: 100%;
+  color: white;
 }
 
 
