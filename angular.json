@@ -20,6 +20,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules",
+                "src/assets/styles"
+              ]
+            },
             "outputPath": "dist/calorie",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,7 +40,7 @@
               "./node_modules/reset.css/reset.css",
               "src/styles.scss",
               {
-                "input": "src/styles/themes/dark.scss",
+                "input": "src/styles/dark.scss",
                 "bundleName": "dark-theme",
                 "inject": false
               }

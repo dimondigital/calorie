@@ -5,8 +5,10 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
-import { SharedModule } from './shared/shared.module';
-import { StoreModule } from '@ngrx/store';
+import {SharedModule} from './shared/shared.module';
+import {StoreModule} from '@ngrx/store';
+import {userState} from "./store/user/user.selectors";
+import {userReducer} from "./store/user/user.reducer";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     MatIconModule,
     SharedModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forFeature(userState, userReducer)
   ],
   providers: [],
   bootstrap: [AppComponent]

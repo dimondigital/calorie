@@ -1,5 +1,8 @@
-
-@use '~@angular/material' as mat;
+/* You can add global styles to this file, and also import other style files */
+// sass-lint:disable no-important
+@use '@angular/material' as mat;
+@import 'normalize.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 @include mat.core();
 
@@ -19,9 +22,7 @@ $calorie-theme: mat.define-light-theme((
 @include mat.core-theme($calorie-theme);
 @include mat.button-theme($calorie-theme);
 
-/* You can add global styles to this file, and also import other style files */
-@import '~normalize.css';
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
 
 html, body {
   height: 100%;
