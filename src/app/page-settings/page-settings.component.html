@@ -3,15 +3,11 @@
   <div fxFlex="100"
        fxLayout="column" fxLayoutAlign="space-around space-around">
     <h1>Personal settings</h1>
-    <!--    <section>-->
-<!--    <mat-form-field>-->
       <mat-label>Gender</mat-label>
       <mat-radio-group [(ngModel)]="genderToggle">
         <mat-radio-button value="male">Male</mat-radio-button>
         <mat-radio-button value="female">Female</mat-radio-button>
       </mat-radio-group>
-<!--    </mat-form-field>-->
-    <!--    </section>-->
     <mat-form-field>
       <mat-label>Weight (kg)</mat-label>
       <input matInput>
@@ -43,6 +39,7 @@
       <mat-label>Carbohydrates (gm)</mat-label>
       <input matInput>
     </mat-form-field>
+    <mat-slide-toggle (change)="themeSwitch()">Switch theme</mat-slide-toggle>
     <button>Save settings</button>
   </div>
 </div>

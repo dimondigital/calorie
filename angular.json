@@ -37,13 +37,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/reset.css/reset.css",
-              "src/styles.scss",
-              {
-                "input": "src/styles/dark.scss",
-                "bundleName": "dark-theme",
-                "inject": false
-              }
+              "node_modules/reset.css/reset.css",
+              "node_modules/normalize.css/normalize.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },

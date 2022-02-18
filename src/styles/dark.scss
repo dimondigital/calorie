@@ -3,6 +3,7 @@
 //@use "../typography/config" as typography;
 //@use "components"
 
+
 $calorie-dark-primary: mat.define-palette(mat.$blue-grey-palette);
 $calorie-dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
 $calorie-dark-warn: mat.define-palette(mat.$deep-orange-palette);

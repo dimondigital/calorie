@@ -8,6 +8,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatInputModule} from "@angular/material/input";
     MatRadioModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule
   ]
 })
 export class PageSettingsModule { }

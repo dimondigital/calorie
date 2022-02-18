@@ -21,6 +21,7 @@ import {userReducer} from "./store/user/user.reducer";
     AppRoutingModule,
     MatIconModule,
     SharedModule,
+    StoreModule.forRoot({}),
     StoreModule.forFeature(userState, userReducer)
   ],
   providers: [],
