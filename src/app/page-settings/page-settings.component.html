@@ -67,7 +67,7 @@
         <input type="number" [formControlName]="'carbohydrates'" matInput>
       </mat-form-field>
 
-      <mat-slide-toggle (change)="themeSwitch()" [checked]="theme$ | async">Switch theme</mat-slide-toggle>
+      <mat-slide-toggle (change)="themeSwitch()" [checked]="theme$ | async">light/dark theme</mat-slide-toggle>
       <button type="submit">
         Save settings
       </button>

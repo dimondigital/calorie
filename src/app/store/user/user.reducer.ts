@@ -30,6 +30,6 @@ export const userFeatureKey: string = 'user';
 
 export const userReducer = createReducer(
   initialState,
-  on(appThemeToggle, state => ({...state, appTheme: Number(!(state.appTheme))})),
+  on(appThemeToggle, (state, {payload}) => ({...state, ...payload, appTheme: Number(!(state.appTheme))})),
   on(saveSettings, (state, {payload}) => ({...state, ...payload}))
 );

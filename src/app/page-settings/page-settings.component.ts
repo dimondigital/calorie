@@ -46,7 +46,7 @@ export class PageSettingsComponent {
   }
 
   public themeSwitch(): void {
-    this.store.dispatch(appThemeToggle())
+    this.store.dispatch(appThemeToggle({payload: this.settingsForm.value}))
   }
 
   public onSubmit(): void {
