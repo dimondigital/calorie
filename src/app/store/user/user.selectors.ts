@@ -8,6 +8,11 @@ export const selectUserTheme = createSelector(
   (userState: UserState) => !!userState.appTheme
 );
 
+export const selectUserGender = createSelector(
+  selectUserState,
+  (userState: UserState) => userState.gender
+);
+
 
 
 

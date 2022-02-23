@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ####################################################################
 https://www.npmjs.com/package/sass-lint (sass-lint guide)
+
+## ADD LINKS
+https://www.concretepage.com/ngrx/ngrx-store-example

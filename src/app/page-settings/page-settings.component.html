@@ -1,47 +1,77 @@
 <app-close-page-button></app-close-page-button>
-<div fxFill style="padding:4%;">
-  <div fxFlex="100"
-       fxLayout="column" fxLayoutAlign="space-around space-around">
-    <h1>Personal settings</h1>
-      <mat-label>Gender</mat-label>
-      <mat-radio-group [(ngModel)]="genderToggle">
-        <mat-radio-button value="male">Male</mat-radio-button>
-        <mat-radio-button value="female">Female</mat-radio-button>
+<div *ngIf="userState" fxFill style="padding:4%;">
+  <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()"
+        fxFlex="100"
+        fxLayout="column" fxLayoutAlign="space-around space-around">
+      <h1>Personal settings</h1>
+      <mat-label>
+        Gender
+      </mat-label>
+      <mat-radio-group fxLayoutGap="1em" [formControlName]="'gender'">
+        <mat-radio-button [value]="0">Female</mat-radio-button>
+        <mat-radio-button [value]="1">Male</mat-radio-button>
       </mat-radio-group>
-    <mat-form-field>
-      <mat-label>Weight (kg)</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Height (sm)</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <button>Calculate rate for day</button>
-    <div fxLayout="row" fxLayoutGap="6%">
-      <mat-form-field fxFlex="47">
-        <mat-label>Min kcal</mat-label>
-        <input matInput>
+      <mat-form-field>
+
+        <mat-label>
+          Weight (kg)
+        </mat-label>
+        <input type="number" [formControlName]="'weight'" matInput>
       </mat-form-field>
-      <mat-form-field fxFlex="47">
-        <mat-label>Max kcal</mat-label>
-        <input matInput>
+      <mat-form-field>
+
+        <mat-label>
+          Height (sm)
+        </mat-label>
+        <input type="number" [formControlName]="'height'" matInput>
       </mat-form-field>
-    </div>
-    <mat-form-field>
-      <mat-label>Fats (gm)</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Proteins (gm)</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Carbohydrates (gm)</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-slide-toggle (change)="themeSwitch()" [checked]="theme$ | async">Switch theme: </mat-slide-toggle>
-    <button>Save settings</button>
-  </div>
+
+      <button (click)="calculateRateForDay()">Calculate rate for day</button>
+
+      <div fxLayout="row" fxLayoutGap="6%">
+
+        <mat-form-field fxFlex="47">
+          <mat-label>
+            Min kcal
+          </mat-label>
+          <input type="number" [formControlName]="'minkcal'" matInput>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="47">
+          <mat-label>
+            Max kcal
+          </mat-label>
+          <input  type="number" [formControlName]="'maxkcal'" matInput>
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field>
+        <mat-label>
+          Fats (gm)
+        </mat-label>
+        <input type="number" [formControlName]="'fats'" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>
+          Proteins (gm)
+        </mat-label>
+        <input type="number" [formControlName]="'proteins'" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>
+          Carbohydrates (gm)
+        </mat-label>
+        <input type="number" [formControlName]="'carbohydrates'" matInput>
+      </mat-form-field>
+
+      <mat-slide-toggle (change)="themeSwitch()" [checked]="theme$ | async">Switch theme</mat-slide-toggle>
+      <button type="submit">
+        Save settings
+      </button>
+  </form>
 </div>
 
 
