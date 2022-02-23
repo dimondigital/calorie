@@ -6,9 +6,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from './shared/shared.module';
-import {StoreModule} from '@ngrx/store';
-import {userState} from "./store/user/user.selectors";
-import {userReducer} from "./store/user/user.reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
+import {StoreModule} from "@ngrx/store";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {userReducer} from "./store/user/user.reducer";
     MatIconModule,
     SharedModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature(userState, userReducer)
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
   providers: [],
   bootstrap: [AppComponent]

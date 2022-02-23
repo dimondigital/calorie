@@ -1,14 +1,16 @@
 import {AppTheme} from "./app-theme";
-import {Action, createReducer, on} from "@ngrx/store";
+import {createReducer, on} from "@ngrx/store";
 import {appThemeToggle} from "./user.actions";
 
-export interface State {
+export interface UserState {
   appTheme: number;
 }
 
-export const initialState: State = {
+export const initialState: UserState = {
   appTheme: AppTheme.LIGHT
 }
+
+export const userFeatureKey: string = 'user';
 
 export const userReducer = createReducer(
   initialState,

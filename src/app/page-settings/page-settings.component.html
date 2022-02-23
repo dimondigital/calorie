@@ -39,7 +39,7 @@
       <mat-label>Carbohydrates (gm)</mat-label>
       <input matInput>
     </mat-form-field>
-    <mat-slide-toggle (change)="themeSwitch()">Switch theme</mat-slide-toggle>
+    <mat-slide-toggle (change)="themeSwitch()" [checked]="theme$ | async">Switch theme: </mat-slide-toggle>
     <button>Save settings</button>
   </div>
 </div>
