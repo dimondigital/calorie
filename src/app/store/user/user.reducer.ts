@@ -2,6 +2,8 @@ import {AppTheme, Gender} from "./user.enums";
 import {createReducer, on} from "@ngrx/store";
 import {appThemeToggle, saveSettings} from "./user.actions";
 
+export const userFeatureKey: string = 'user';
+
 export interface UserState {
   gender: Gender | undefined;
   weight: number | undefined;
@@ -14,7 +16,7 @@ export interface UserState {
   appTheme: AppTheme;
 }
 
-export const initialState: UserState = {
+const initialState: UserState = {
   gender: Gender.FEMALE,
   weight: undefined,
   height: undefined,
@@ -25,8 +27,6 @@ export const initialState: UserState = {
   carbohydrates: undefined,
   appTheme: AppTheme.LIGHT
 }
-
-export const userFeatureKey: string = 'user';
 
 export const userReducer = createReducer(
   initialState,

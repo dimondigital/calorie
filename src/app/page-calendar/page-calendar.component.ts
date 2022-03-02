@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {getDayName, getDaysInMonthUTC, getMonthList, getMonthName} from "../utils/date.utils";
-import {FitnessDay} from "../day/fitnessDay";
+import {FitnessDay} from "../model/fitness-day.model";
 import {Time} from "@angular/common";
 
 @Component({

@@ -17,7 +17,7 @@
       <div fxFlex="auto" class="_days-wr">
         <div #wrapperDays style="overflow-y: hidden;" fxLayout="row">
           <ng-container *ngFor="let d of currentMonthDays">
-            <a class="day"  [routerLink]="['/daily']">
+            <a class="day" [routerLink]="['/daily']">
               <div fxLayout="column" fxFill fxLayoutAlign="center center" >
                 <span>{{d.kcal.current}}</span>
                 <span [ngClass]="d.date.getDate() === currentDay ? 'day__current' : ''">{{d.date.getDate()}}</span>
@@ -41,8 +41,8 @@
         <ng-container *ngFor="let d of currentMonthDays">
           <div fxLayout="column" style="min-width: 14.2857%;">
             <ng-container *ngFor="let h of hoursSchedule">
-              <a class="hour" [routerLink]="['/meal']">
-                <div></div>
+              <a class="hour" [routerLink]="['/meal', {time: h, currentDay: d}]" [state]="{time: h, currentDay: d}">
+<!--                <div><span>{{ h.hours }}</span></div>-->
               </a>
             </ng-container>
           </div>

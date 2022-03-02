@@ -1,34 +1,52 @@
 <app-close-page-button></app-close-page-button>
 <div fxFill style="padding:4%;">
-  <div fxFlex="100"
-       fxLayout="column" fxLayoutAlign="space-around space-around">
+
+  <form [formGroup]="mealForm" (ngSubmit)="onSubmit()"
+        fxFlex="100" fxLayout="column" fxLayoutAlign="space-around space-around">
     <h1>New meal</h1>
+
     <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput>
+      <mat-label>
+        Title</mat-label>
+      <input [formControlName]="'title'" matInput>
     </mat-form-field>
+
     <div fxLayout="row" fxLayoutGap="6%">
+
       <mat-form-field fxFlex="47">
-        <mat-label>Kcal</mat-label>
-        <input matInput>
+        <mat-label>
+          Kcal</mat-label>
+        <input type="number" [formControlName]="'kcal'" matInput>
       </mat-form-field>
-      <mat-form-field fxFlex="47">
-        <mat-label>Time</mat-label>
-        <input matInput>
-      </mat-form-field>
+
+      <div fxFlex="47">
+        <span>{{ currentDay.date | date: 'medium' }}</span>
+      </div>
+
     </div>
+
     <mat-form-field>
-      <mat-label>Fats (gm)</mat-label>
-      <input matInput>
+      <mat-label>
+        Fats (gm)</mat-label>
+      <input type="number" [formControlName]="'fats'" matInput>
     </mat-form-field>
+
     <mat-form-field>
-      <mat-label>Proteins (gm)</mat-label>
-      <input matInput>
+      <mat-label>
+        Proteins (gm)</mat-label>
+      <input type="number" [formControlName]="'proteins'" matInput>
     </mat-form-field>
+
     <mat-form-field>
-      <mat-label>Carbohydrates (gm)</mat-label>
-      <input matInput>
+      <mat-label>
+        Carbohydrates (gm)</mat-label>
+      <input type="number" [formControlName]="'carbohydrates'" matInput>
     </mat-form-field>
+
     <input class="ng-hide" id="input-file-id" type="file"/>
-  </div>
+
+    <button type="submit">
+      Add meal
+    </button>
+  </form>
 </div>
