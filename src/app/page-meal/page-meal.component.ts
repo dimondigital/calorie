@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {FitnessDay} from "../model/fitness-day.model";
-import {Time, Location} from "@angular/common";
+import {Location} from "@angular/common";
 import {Store} from "@ngrx/store";
 import {addMeal} from "../store/meal/meal.actions";
+import {MealsState} from "../store/meal/meal.reducer";
 
 @Component({
   selector: 'app-page-meal',
@@ -18,11 +19,12 @@ export class PageMealComponent implements OnInit {
   public mealForm: FormGroup;
 
   constructor(
-    private store: Store<>,
+    private store: Store<MealsState>,
     private fb: FormBuilder,
     private router: Router,
     public location: Location
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     //@ts-ignore
@@ -44,7 +46,7 @@ export class PageMealComponent implements OnInit {
 
   public onSubmit(): void {
     console.log(this.mealForm.value);
-    this.store.dispatch(addMeal(this.mealForm.value));
+    this.store.dispatch(addMeal({payload: {meal: this.mealForm.value}}));
   }
 
 }

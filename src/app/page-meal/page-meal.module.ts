@@ -9,6 +9,8 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {StoreModule} from "@ngrx/store";
 import {mealFeatureKey, mealsReducer} from "../store/meal/meal.reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../../environments/environment";
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {mealFeatureKey, mealsReducer} from "../store/meal/meal.reducer";
     MatInputModule,
     ReactiveFormsModule,
     StoreModule.forFeature(mealFeatureKey, mealsReducer),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ]
 })
 export class PageMealModule {

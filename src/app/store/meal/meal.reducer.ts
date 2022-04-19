@@ -60,12 +60,17 @@ const initialMeals: Meal[] = [
   }
 ];
 
-// export interface MealsState {
-//   meals: Meal[]
-// }
-
 export interface MealsState extends EntityState<Meal> {
-  meals: Meal[]
+  ids:
+    entities
+  :
+  Meal
+  []
+}
+
+// sortComparer
+export function sortByCategory(ob1: Meal, ob2: Meal): number {
+  return ob1.title.localeCompare(ob2.title);
 }
 
 export const adapter: EntityAdapter<Meal> = createEntityAdapter<Meal>();
@@ -76,8 +81,14 @@ const initialState: MealsState = adapter.getInitialState({
 
 export const mealsReducer = createReducer(
   initialState,
-  on(addMeal, (meal, state) => {
-    return adapter.addOne(state, meal)
-  })
+  on(addMeal, (state, {payload}) => adapter.addOne(payload.meal, state))
 );
+
+// SELECTORS
+// export const {
+//   selectIds: selectArticleIds,
+//   selectEntities: selectArticleEntities,
+//   selectAll: selectAllArticles,
+//   selectTotal: articlesCount
+// } = adapter.getSelectors();
 

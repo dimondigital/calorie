@@ -7,5 +7,5 @@ export enum MealActions {
 
 export const addMeal = createAction(
   '[Meal] Add Meal +',
-  props<Meal>()
+  props<{payload: {meal: Meal}}>()
 );
