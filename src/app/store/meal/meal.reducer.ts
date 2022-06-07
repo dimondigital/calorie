@@ -8,6 +8,7 @@ export const mealFeatureKey: string = 'meals';
 
 const initialMeals: Meal[] = [
   {
+    id: 1,
     title: 'Title #1',
     kcal: 999,
     fats: 888,
@@ -25,6 +26,7 @@ const initialMeals: Meal[] = [
     photo: ''
   },
   {
+    id: 2,
     title: 'Title #2',
     kcal: 999,
     fats: 888,
@@ -42,6 +44,7 @@ const initialMeals: Meal[] = [
     photo: ''
   },
   {
+    id: 3,
     title: 'Title #3',
     kcal: 999,
     fats: 888,
@@ -69,7 +72,10 @@ export function sortByCategory(ob1: Meal, ob2: Meal): number {
   return ob1.title.localeCompare(ob2.title);
 }
 
-export const adapter: EntityAdapter<Meal> = createEntityAdapter<Meal>();
+export const adapter: EntityAdapter<Meal> = createEntityAdapter<Meal>({
+  sortComparer: sortByCategory,
+  selectId: meal => meal.id
+});
 
 const initialState: MealsState = adapter.getInitialState({
   meals: initialMeals

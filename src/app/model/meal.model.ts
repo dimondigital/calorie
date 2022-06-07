@@ -2,6 +2,7 @@ import {Time} from "@angular/common";
 import {FitnessDay} from "./fitness-day.model";
 
 export interface Meal {
+  id: number;
   title: string;
   kcal: number;
   fats: number;
