@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
 import {FitnessDay} from "../model/fitness-day.model";
 import {Location} from "@angular/common";
 import {Store} from "@ngrx/store";
@@ -21,7 +20,6 @@ export class PageMealComponent implements OnInit {
   constructor(
     private store: Store<MealsState>,
     private fb: FormBuilder,
-    private router: Router,
     public location: Location
   ) {
   }

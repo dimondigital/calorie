@@ -86,11 +86,13 @@ a {
 }
 
 .day__current {
-  background-color: #799CF4;
+  position: relative;
   padding: 3px;
   line-height: 100%;
   border-radius: 100%;
+  min-width: 1em;
   color: white;
+  background-color: #799CF4;
 }
 
 

@@ -2,7 +2,10 @@
 <div fxFill style="padding:4%;">
   <div fxFlex="100"
        fxLayout="column" fxLayoutAlign="space-around space-around">
-    <h1>Today</h1>
+    <h1>
+      <ng-container *ngIf="isToday">Today</ng-container>
+      <ng-container *ngIf="!isToday">{{ day.date | date: 'MMMM d' }}</ng-container>
+    </h1>
     <mat-form-field>
       <mat-label>Kcal</mat-label>
       <input matInput>
