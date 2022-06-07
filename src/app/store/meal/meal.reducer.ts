@@ -60,12 +60,8 @@ const initialMeals: Meal[] = [
   }
 ];
 
-export interface MealsState extends EntityState<Meal> {
-  ids:
-    entities
-  :
-  Meal
-  []
+export interface MealsState extends EntityState<Meal>  {
+  // ids: Meal[];
 }
 
 // sortComparer
