@@ -44,7 +44,7 @@ export class PageMealComponent implements OnInit {
 
   public onSubmit(): void {
     console.log(this.mealForm.value);
-    this.store.dispatch(addMeal({payload: {meal: this.mealForm.value}}));
+    this.store.dispatch(addMeal({meal: this.mealForm.value}));
   }
 
 }
