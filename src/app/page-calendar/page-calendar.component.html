@@ -31,7 +31,7 @@
     </div>
     <div fxLayout="row" style="overflow: hidden; min-height: 100vh;">
       <div #wrapperHours fxLayout="column" fxFlex="20" class="_hours-schedule-wr">
-        <ng-container *ngFor="let h of hoursSchedule">
+        <ng-container *ngFor="let h of calendarDayHours">
             <span class="hour">
               <ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0
             </span>
@@ -40,9 +40,14 @@
       <div #wrapperSchedule fxFlex="80" class="_total-schedule-wr" fxLayout="row">
         <ng-container *ngFor="let d of currentMonthDays">
           <div fxLayout="column" style="min-width: 14.2857%;">
-            <ng-container *ngFor="let h of hoursSchedule">
-              <a class="hour" [routerLink]="['/meal', {time: h, currentDay: d}]" [state]="{time: h, currentDay: d}">
-<!--                <div><span>{{ h.hours }}</span></div>-->
+            <ng-container *ngFor="let hs of d.hoursSchedule">
+              <a class="hour" fxLayout="column" fxLayoutAlign="space-between start"
+                 [ngClass]="{ 'hour__filled': hs.meal && hs.time.hours === hs.meal.time.hours }"
+                 [routerLink]="['/meal', {time: hs.time, currentDay: d}]" [state]="{time: hs.time, currentDay: d}">
+                <ng-container *ngIf="hs.meal">
+                  <span>{{ hs.meal.title }}</span>
+                  <span>{{ hs.meal.kcal }}</span>
+                </ng-container>
               </a>
             </ng-container>
           </div>

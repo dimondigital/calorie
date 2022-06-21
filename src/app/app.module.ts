@@ -9,6 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {StoreModule} from "@ngrx/store";
+import {mealsReducer} from "./store/meal/meal.reducer";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {StoreModule} from "@ngrx/store";
     AppRoutingModule,
     MatIconModule,
     SharedModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({meals: mealsReducer}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
   providers: [],

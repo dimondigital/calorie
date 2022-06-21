@@ -9,14 +9,14 @@ export const mealFeatureKey: string = 'meals';
 const initialMeals: Meal[] = [
   {
     id: '1',
-    title: 'Title #1',
+    title: 'курица с мясом1',
     kcal: 999,
     fats: 888,
     proteins: 777,
     carbohydrates: 666,
     time: {hours: 5, minutes: 0},
     day: {
-      date: new Date('2022-03-02T05:00:00'),
+      date: new Date('2022-06-20T05:00:00'),
       kcal: {current: 120, norm: 350},
       dayTitle: 'курица с мясом',
       fats: {current: 120, norm: 350},
@@ -27,14 +27,14 @@ const initialMeals: Meal[] = [
   },
   {
     id: '2',
-    title: 'Title #2',
+    title: 'курица с мясом2',
     kcal: 999,
     fats: 888,
     proteins: 777,
     carbohydrates: 666,
     time: {hours: 6, minutes: 0},
     day: {
-      date: new Date('2022-03-02T06:00:00'),
+      date: new Date('2022-06-21T06:00:00'),
       kcal: {current: 120, norm: 350},
       dayTitle: 'курица с мясом',
       fats: {current: 120, norm: 350},
@@ -45,14 +45,14 @@ const initialMeals: Meal[] = [
   },
   {
     id: '3',
-    title: 'Title #3',
+    title: 'курица с мясом3',
     kcal: 999,
     fats: 888,
     proteins: 777,
     carbohydrates: 666,
     time: {hours: 7, minutes: 0},
     day: {
-      date: new Date('2022-03-02T07:00:00'),
+      date: new Date('2022-06-22T07:00:00'),
       kcal: {current: 120, norm: 350},
       dayTitle: 'курица с мясом',
       fats: {current: 120, norm: 350},
@@ -88,7 +88,7 @@ const initialState: MealsState = adapter.getInitialState({
 
 const filledState = adapter.upsertMany(initialMeals, initialState);
 
-const { selectAll, selectEntities } = adapter.getSelectors();
+export const { selectAll, selectEntities } = adapter.getSelectors();
 
 export const mealsReducer = createReducer(
   filledState,
