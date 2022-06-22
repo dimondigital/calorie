@@ -64,7 +64,7 @@ const initialMeals: Meal[] = [
 ];
 
 export interface MealsState extends EntityState<Meal>  {
-  selectedMealId: string | null;
+  // selectedMealId: string | null;
   // ids: Meal[];
 }
 
@@ -74,26 +74,30 @@ export function sortByCategory(ob1: Meal, ob2: Meal): number {
 }
 
 export const adapter: EntityAdapter<Meal> = createEntityAdapter<Meal>({
-  selectId: selectMealId,
-  sortComparer: sortByCategory
+  sortComparer: false
 });
+
+
+
+export const initialState: MealsState = adapter.getInitialState(initialMeals);
+
+export const filledState = adapter.upsertMany(initialMeals, initialState);
+
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors();
+
+export const mealsReducer = createReducer(
+  filledState,
+  on(addMeal, (state, {payload}) => adapter.addOne(payload.meal, state))
+);
 
 export function selectMealId(m: Meal): string {
   return m.id;
 }
-
-const initialState: MealsState = adapter.getInitialState({
-  selectedMealId: null
-});
-
-const filledState = adapter.upsertMany(initialMeals, initialState);
-
-export const { selectAll, selectEntities } = adapter.getSelectors();
-
-export const mealsReducer = createReducer(
-  filledState,
-  on(addMeal, (state, {meal}) => adapter.addOne(meal, state))
-);
 
 // SELECTORS
 // export const {

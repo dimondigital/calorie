@@ -7,7 +7,7 @@ import {Time} from "@angular/common";
 import {Observable} from "rxjs";
 import {Meal} from "../model/meal.model";
 import {select, Store} from "@ngrx/store";
-import {selectMealAll, selectMealState} from "../store/meal/meal.selectors";
+import {selectMealAll} from "../store/meal/meal.selectors";
 import {TimeMeal} from "../model/time-meal";
 
 @Component({
@@ -48,7 +48,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     // this.currentDay = 30;
     this.currentMonthDays = this.getFitnessDays(now);
 
-    for(let i=0; i<24; i++) {
+    for (let i = 0; i < 24; i++) {
       this.calendarDayHours.push({hours: i, minutes: 0});
     }
 
@@ -58,20 +58,20 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     this.existingMeals$.subscribe((meals: Meal[]) => {
 
       // console.log(this.currentMonthDays);
-      for(let m of meals) {
-        for(let cmd of this.currentMonthDays) {
+      for (let m of meals) {
+        for (let cmd of this.currentMonthDays) {
           let hoursSchedule: TimeMeal[] = [];
-          for(let i=0; i<24; i++) {
+          for (let i = 0; i < 24; i++) {
             hoursSchedule.push({time: {hours: i, minutes: 0}});
           }
           // filling each day with hours schedule
-          if(!cmd.hoursSchedule) cmd.hoursSchedule = [...hoursSchedule];
-          if(this.daysFits(m.day.date, cmd.date)) {
-            if(!cmd.meals) cmd.meals = [];
+          if (!cmd.hoursSchedule) cmd.hoursSchedule = [...hoursSchedule];
+          if (this.daysFits(m.day.date, cmd.date)) {
+            if (!cmd.meals) cmd.meals = [];
             cmd.meals.push(m);
             //filling each hour with existing meal
-            for(let hs of cmd.hoursSchedule) {
-              if(hs.time.hours === m.time.hours) {
+            for (let hs of cmd.hoursSchedule) {
+              if (hs.time.hours === m.time.hours) {
                 console.log('m');
                 hs.meal = m;
               }
@@ -81,10 +81,13 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
         }
       }
 
-      for(let cmd of this.currentMonthDays) {
-        for (let hs of cmd.hoursSchedule!) {
-          if (hs.meal) {
-            console.log(`hs.meal: ${hs.meal.title}`);
+
+      for (let cmd of this.currentMonthDays) {
+        if (cmd.hoursSchedule) {
+          for (let hs of cmd.hoursSchedule) {
+            if (hs.meal) {
+              console.log(`hs.meal: ${hs.meal.title}`);
+            }
           }
         }
       }
@@ -101,7 +104,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     //TODO: remove listeners
     const wrDays = this.renderer.listen(this.wrapperDays.nativeElement, 'scroll', (evt) => {
-     this.wrapperSchedule.nativeElement.scrollLeft = evt.target.scrollLeft;
+      this.wrapperSchedule.nativeElement.scrollLeft = evt.target.scrollLeft;
     });
 
     const wrHours = this.renderer.listen(this.wrapperHours.nativeElement, 'scroll', (evt) => {
@@ -113,7 +116,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
       this.wrapperHours.nativeElement.scrollTop = evt.target.scrollTop;
     });
     // centering schedule and wrapperDays by current day
-    this.wrapperDays.nativeElement.scrollLeft = (this.wrapperDays.nativeElement.scrollWidth / this.currentMonthDays.length) * (this.currentDay-4);
+    this.wrapperDays.nativeElement.scrollLeft = (this.wrapperDays.nativeElement.scrollWidth / this.currentMonthDays.length) * (this.currentDay - 4);
   }
 
   getFitnessDays(now: Date): FitnessDay[] {

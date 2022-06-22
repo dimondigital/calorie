@@ -3,7 +3,7 @@ import {Meal} from "../../model/meal.model";
 
 export const addMeal = createAction(
   '[Meal] Add Meal +',
-  props<{ meal: Meal }>()
+  props<{ payload: {meal: Meal} }>()
 );
 
 
