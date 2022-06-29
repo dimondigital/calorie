@@ -6,6 +6,7 @@ import {Store} from "@ngrx/store";
 import {addMeal} from "../store/meal/meal.actions";
 import {MealsState} from "../store/meal/meal.reducer";
 import {Meal} from "../model/meal.model";
+import {randomUID} from "../utils/other.utils";
 
 @Component({
   selector: 'app-page-meal',
@@ -48,15 +49,11 @@ export class PageMealComponent implements OnInit {
       {
         ...this.mealForm.value,
         day: {date: this.currentDay.date},
-        id: this.uid(),
+        id: randomUID(),
         time: { hours: this.currentDay.date.getHours(), minutes: 0 }
       };
     console.log(newMeal);
     this.store.dispatch(addMeal({payload: {meal: newMeal}}));
   }
-
-  public uid() {
-    return (performance.now().toString(36)+Math.random().toString(36)).replace(/\./g,"");
-  };
 
 }
