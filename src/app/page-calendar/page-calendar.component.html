@@ -1,27 +1,35 @@
 <div class="page calendar">
-  <div class="_background-logo"></div>
+<!--  <div class="_background-logo"></div>-->
 
   <div fxLayout="column" style="height: 100vh; overflow: hidden;">
     <div fxLayout="row">
       <div fxLayout="column" class="_settings-wr">
-        <a [routerLink]="['/settings']">
+
+        <a [routerLink]="['/settings']" class="grid__square-w1xh1">
           <mat-icon svgIcon="settings" class="mat-icon"></mat-icon>
         </a>
-        <mat-form-field>
+
+        <div class="grid__square-w1xh05">2022</div>
+        <mat-form-field class="grid__square-w1xh05">
           <mat-select [(value)]="currentMonth">
             <mat-option *ngFor="let m of months" [value]="m">{{m}}</mat-option>
           </mat-select>
         </mat-form-field>
+
       </div>
 
       <div fxFlex="auto" class="_days-wr">
         <div #wrapperDays style="overflow-y: hidden;" fxLayout="row">
           <ng-container *ngFor="let d of currentMonthDays">
             <a class="day" [routerLink]="['/daily']" [state]="{day: d}">
-              <div fxLayout="column" fxFill fxLayoutAlign="center center" >
-                <span>{{d.kcal.current}}</span>
-                <span [ngClass]="d.date.getDate() === currentDay ? 'day__current' : ''">{{d.date.getDate()}}</span>
-                <span>{{d.dayTitle}}</span>
+              <div fxLayout="column" fxFill fxLayoutAlign="center center">
+                <div class="grid__square-w1xh1" fxLayout="column">
+                  <span class="grid__square-w1xh05">{{d.kcal.current}}</span>
+                  <span class="grid__square-w1xh05">{{d.dayTitle}}</span>
+                </div>
+                <div class="grid__square-w1xh1">
+                  <span [ngClass]="d.date.getDate() === currentDay ? 'day__current' : ''">{{d.date.getDate()}}</span>
+                </div>
               </div>
             </a>
           </ng-container>
@@ -30,18 +38,19 @@
 
     </div>
     <div fxLayout="row" style="overflow: hidden; min-height: 100vh;">
-      <div #wrapperHours fxLayout="column" fxFlex="20" class="_hours-schedule-wr">
+      <div #wrapperHours fxLayout="column" class="_hours-schedule-wr">
         <ng-container *ngFor="let h of calendarDayHours">
-            <span class="hour">
-              <ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0
+            <span class="grid__square-w1xh1">
+              <ng-container *ngIf="h.hours < 10">0</ng-container>
+              {{h.hours}}:{{h.minutes}}0
             </span>
         </ng-container>
       </div>
       <div #wrapperSchedule fxFlex="80" class="_total-schedule-wr" fxLayout="row">
         <ng-container *ngFor="let d of currentMonthDays">
-          <div fxLayout="column" style="min-width: 14.2857%;">
+          <div fxLayout="column">
             <ng-container *ngFor="let hs of d.hoursSchedule">
-              <a class="hour" fxLayout="column" fxLayoutAlign="space-between start"
+              <a class="hour grid__square-w1xh1" style="box-sizing: initial !important;" fxLayout="column" fxLayoutAlign="space-between start"
                  [ngClass]="{ 'hour__filled': hs.meal && hs.time.hours === hs.meal.time.hours }"
                  [routerLink]="['/meal', {time: hs.time, currentDay: d}]" [state]="{time: hs.time, currentDay: d}">
                 <ng-container *ngIf="hs.meal">
