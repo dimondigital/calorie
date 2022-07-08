@@ -34,6 +34,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     private store: Store
   ) {
     iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings.svg'));
+    iconRegistry.addSvgIcon('settings-biceps', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings-biceps.svg'));
 
     this.existingMeals$ = this.store.pipe(select(selectMealAll));
 
@@ -44,6 +45,7 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     const now: Date = new Date();
     this.months = getMonthList();
     this.currentMonth = getMonthName(now);
+    console.log(this.currentMonth);
     this.currentDay = now.getDate();
     // this.currentDay = 30;
     this.currentMonthDays = this.getFitnessDays(now);

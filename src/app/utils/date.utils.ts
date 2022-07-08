@@ -4,7 +4,7 @@ export function getMonthList(
 ): string[] {
   const year = new Date().getUTCFullYear(); // 2020
   const monthList = [...Array(12).keys()]; // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  const formatter = new Intl.DateTimeFormat(locales, {
+  const formatter = new Intl.DateTimeFormat(['en'], {
     month: format
   });
 
@@ -15,7 +15,7 @@ export function getMonthList(
 }
 
 export function getMonthName(date: Date): string {
-  const formatter = new Intl.DateTimeFormat([], {
+  const formatter = new Intl.DateTimeFormat(['en'], {
     month: "long"
   });
   return formatter.format(date);

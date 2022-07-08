@@ -37,17 +37,19 @@ $height: 100vh;
   }
   .grid__square-w1xh1 {
     display: flex;
-    width: calc(#{$orient} - 4px);
-    height: calc(#{$orient} - 4px);
-    min-height: calc(#{$orient} - 4px);
-    border: 2px solid black;
+    width: calc(#{$orient});
+    height: calc(#{$orient});
+    min-height: calc(#{$orient});
+    //border: 2px solid black;
     box-sizing: initial !important;
   }
   .grid__square-w1xh2 {
     display: flex;
-    width: calc(#{$orient} - 4px);
-    height: calc(#{$orient*2} - 4px);
+    width: calc(#{$orient});
+    height: calc(#{$orient*2});
   }
+  .year-fnt-sz { font-size: calc(#{$orient} * 0.3); }
+
 }
 
 @media screen and (orientation: landscape) {
@@ -60,17 +62,20 @@ $height: 100vh;
   }
   .grid__square-w1xh1 {
     display: flex;
-    width: calc(#{$orient} - 4px);
-    height: calc(#{$orient} - 4px);
-    min-height: calc(#{$orient} - 4px);
-    border: 2px solid black;
+    width: calc(#{$orient});
+    height: calc(#{$orient});
+    min-height: calc(#{$orient});
+    //border: 2px solid black;
     box-sizing: initial !important;
   }
   .grid__square-w1xh2 {
     display: flex;
-    width: calc(#{$orient} - 4px);
-    height: calc(#{$orient*2} - 4px);
+    width: calc(#{$orient});
+    height: calc(#{$orient*2});
   }
+  .year-fnt-sz { font-size: calc(#{$orient} * 0.3); }
 }
+
+
 
 
