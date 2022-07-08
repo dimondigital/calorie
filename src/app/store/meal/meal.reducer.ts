@@ -1,7 +1,7 @@
 import {Meal} from "../../model/meal.model";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {createReducer, on} from "@ngrx/store";
-import {addMeal} from "./meal.actions";
+import {addMeal, calendarMonthChange, showPopup} from "./meal.actions";
 
 
 export const mealFeatureKey: string = 'meals';
@@ -92,7 +92,10 @@ export const {
 
 export const mealsReducer = createReducer(
   filledState,
-  on(addMeal, (state, {payload}) => adapter.addOne(payload.meal, state))
+  on(addMeal, (state, {payload}) => adapter.addOne(payload.meal, state)),
+  // TODO: rebase showPopup event to shared store
+  on(showPopup, (state, {payload}) => initialState),
+  on(calendarMonthChange, (state, {payload}) => initialState)
 );
 
 export function selectMealId(m: Meal): string {

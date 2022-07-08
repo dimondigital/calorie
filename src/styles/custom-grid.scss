@@ -1,0 +1,59 @@
+$orient: 0;
+$height: 100vh;
+//@if calc(#{$orient}) < calc(#{$height}) {
+//  $orient: 100vw / 5;
+//} @else {
+//  $orient: 100vh / 5;
+//}
+@media screen and (orientation: portrait) {
+  $orient: 100vw / 5;
+  .grid__square-w1xh05 {
+    //display: flex;
+    width: calc(#{$orient});
+    max-width: calc(#{$orient});
+    height: calc(#{$orient/2});
+    //border: 2px solid black;
+  }
+  .grid__square-w1xh1 {
+    display: flex;
+    width: calc(#{$orient});
+    height: calc(#{$orient});
+    min-height: calc(#{$orient});
+    //border: 2px solid black;
+    box-sizing: initial !important;
+  }
+  .grid__square-w1xh2 {
+    display: flex;
+    width: calc(#{$orient});
+    height: calc(#{$orient*2});
+  }
+  .year-fnt-sz { font-size: calc(#{$orient} * 0.3); }
+  .fullwidth-fnt-sz {
+    font-size: calc(#{$orient} * 0.135);
+  }
+}
+
+@media screen and (orientation: landscape) {
+  $orient: 100vh / 5;
+  .grid__square-w1xh05 {
+    //display: flex;
+    width: calc(#{$orient});
+    height: calc(#{$orient/2});
+    //border: 2px solid black;
+  }
+  .grid__square-w1xh1 {
+    display: flex;
+    width: calc(#{$orient});
+    height: calc(#{$orient});
+    min-height: calc(#{$orient});
+    //border: 2px solid black;
+    box-sizing: initial !important;
+  }
+  .grid__square-w1xh2 {
+    display: flex;
+    width: calc(#{$orient});
+    height: calc(#{$orient*2});
+  }
+  .year-fnt-sz { font-size: calc(#{$orient} * 0.3); }
+  .fullwidth-fnt-sz { font-size: calc(#{$orient} * 0.135); }
+}

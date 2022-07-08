@@ -1,5 +1,5 @@
 <div class="page calendar">
-<!--  <div class="_background-logo"></div>-->
+  <!--  <div class="_background-logo"></div>-->
 
   <div fxLayout="column" style="height: 100vh; overflow: hidden;">
     <div fxLayout="row">
@@ -10,11 +10,8 @@
         </a>
 
         <div class="grid__square-w1xh05 year-fnt-sz" fxLayoutAlign="center center">2022</div>
-        <mat-form-field class="grid__square-w1xh05">
-          <mat-select [(value)]="currentMonth">
-            <mat-option *ngFor="let m of months" [value]="m">{{m}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div (click)="showMonthListPopup()"
+             class="grid__square-w1xh05 fullwidth-fnt-sz" fxLayoutAlign="center center">{{ currentMonth }}</div>
 
       </div>
 
@@ -50,7 +47,8 @@
         <ng-container *ngFor="let d of currentMonthDays">
           <div fxLayout="column">
             <ng-container *ngFor="let hs of d.hoursSchedule">
-              <a class="hour grid__square-w1xh1" style="box-sizing: initial !important;" fxLayout="column" fxLayoutAlign="space-between start"
+              <a class="hour grid__square-w1xh1" style="box-sizing: initial !important;" fxLayout="column"
+                 fxLayoutAlign="space-between start"
                  [ngClass]="{ 'hour__filled': hs.meal && hs.time.hours === hs.meal.time.hours }"
                  [routerLink]="['/meal', {time: hs.time, currentDay: d}]" [state]="{time: hs.time, currentDay: d}">
                 <ng-container *ngIf="hs.meal">

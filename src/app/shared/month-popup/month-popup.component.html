@@ -1,0 +1,13 @@
+<h2>CHOOSE A MONTH</h2>
+<mat-dialog-content>
+  <div fxLayout.xs="row wrap"
+       fxLayoutAlign="space-between"
+       fxLayoutWrap="wrap">
+    <ng-container *ngFor="let m of months">
+      <div class="grid__square-w1xh1 fullwidth-fnt-sz mn" fxLayoutAlign="center center"
+        (click)="chooseMonth(m)">
+        <span class="fullwidth-fnt-sz">{{ m }}</span>
+      </div>
+    </ng-container>
+  </div>
+</mat-dialog-content>

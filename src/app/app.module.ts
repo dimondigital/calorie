@@ -10,6 +10,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {StoreModule} from "@ngrx/store";
 import {mealsReducer} from "./store/meal/meal.reducer";
+import {PopupService} from "./shared/popup.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {mealsReducer} from "./store/meal/meal.reducer";
     StoreModule.forRoot({meals: mealsReducer}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
-  providers: [],
+  providers: [PopupService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

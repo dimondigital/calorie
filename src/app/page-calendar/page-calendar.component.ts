@@ -1,14 +1,17 @@
 import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
-import {getDayName, getDaysInMonthUTC, getMonthList, getMonthName} from "../utils/date.utils";
+import {getDayName, getDaysInMonthUTC, getMonthName} from "../utils/date.utils";
 import {FitnessDay} from "../model/fitness-day.model";
 import {Time} from "@angular/common";
 import {Observable} from "rxjs";
 import {Meal} from "../model/meal.model";
-import {select, Store} from "@ngrx/store";
+import {ActionsSubject, select, Store} from "@ngrx/store";
 import {selectMealAll} from "../store/meal/meal.selectors";
 import {TimeMeal} from "../model/time-meal";
+import {Popup} from "../store/user/user.enums";
+import {showPopup} from "../store/meal/meal.actions";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-page-calendar',
@@ -17,7 +20,7 @@ import {TimeMeal} from "../model/time-meal";
 })
 export class PageCalendarComponent implements OnInit, AfterViewInit {
 
-  public months: string[] = [];
+  // public months: string[] = [];
   public currentMonth: string = '';
   public currentDay: number = -1;
   public currentMonthDays: FitnessDay[] = [];
@@ -31,7 +34,8 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private renderer: Renderer2,
-    private store: Store
+    private store: Store,
+    private actions$: ActionsSubject
   ) {
     iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings.svg'));
     iconRegistry.addSvgIcon('settings-biceps', sanitizer.bypassSecurityTrustResourceUrl('/assets/settings-biceps.svg'));
@@ -43,23 +47,15 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const now: Date = new Date();
-    this.months = getMonthList();
     this.currentMonth = getMonthName(now);
-    console.log(this.currentMonth);
     this.currentDay = now.getDate();
-    // this.currentDay = 30;
     this.currentMonthDays = this.getFitnessDays(now);
 
     for (let i = 0; i < 24; i++) {
       this.calendarDayHours.push({hours: i, minutes: 0});
     }
 
-    // console.log(this.currentMonth);
-    // console.log(this.currentMonthDays);
-
     this.existingMeals$.subscribe((meals: Meal[]) => {
-
-      // console.log(this.currentMonthDays);
       for (let m of meals) {
         for (let cmd of this.currentMonthDays) {
           let hoursSchedule: TimeMeal[] = [];
@@ -93,6 +89,13 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
           }
         }
       }
+    });
+
+    this.actions$.pipe(
+      filter((action) => action.type === '[Calendar page] Month Change')
+    ).subscribe((action: any) => {
+      // console.log(`action: ${action}`);
+      this.currentMonth = action.payload;
     });
   }
 
@@ -132,6 +135,10 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
       })
     }
     return fitnessDays;
+  }
+
+  showMonthListPopup(): void {
+    this.store.dispatch(showPopup({payload: Popup.CHOOSE_MONTH}));
   }
 
 

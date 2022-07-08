@@ -31,5 +31,5 @@ const initialState: UserState = {
 export const userReducer = createReducer(
   initialState,
   on(appThemeToggle, (state, {payload}) => ({...state, ...payload, appTheme: Number(!(state.appTheme))})),
-  on(saveSettings, (state, {payload}) => ({...state, ...payload}))
+  on(saveSettings, (state, {payload}) => ({...state, ...payload})),
 );

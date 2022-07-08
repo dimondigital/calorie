@@ -7,3 +7,7 @@ export enum Gender {
   FEMALE,
   MALE
 }
+
+export enum Popup {
+  CHOOSE_MONTH = 'ChooseMonth'
+}
