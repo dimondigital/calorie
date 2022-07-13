@@ -20,9 +20,11 @@
           <ng-container *ngFor="let d of currentMonthDays">
             <a class="day" [routerLink]="['/daily']" [state]="{day: d}">
               <div fxLayout="column" fxFill fxLayoutAlign="center center">
-                <div class="grid__square-w1xh1" fxLayout="column">
-                  <span class="grid__square-w1xh05">{{d.kcal.current}}</span>
-                  <span class="grid__square-w1xh05">{{d.dayTitle}}</span>
+                <div class="grid__square-w1xh1 " fxLayout="column">
+                  <div class="grid__square-w1xh05">
+                    <span class="day__calorie">{{d.kcal.current}}</span>
+                  </div>
+                  <span class="grid__square-w1xh05">{{d.dayTitle | uppercase}}</span>
                 </div>
                 <div class="grid__square-w1xh1">
                   <span [ngClass]="d.date.getDate() === currentDay ? 'day__current' : ''">{{d.date.getDate()}}</span>
@@ -37,24 +39,26 @@
     <div fxLayout="row" style="overflow: hidden; min-height: 100vh;">
       <div #wrapperHours fxLayout="column" class="_hours-schedule-wr">
         <ng-container *ngFor="let h of calendarDayHours">
-            <span class="grid__square-w1xh1">
-              <ng-container *ngIf="h.hours < 10">0</ng-container>
-              {{h.hours}}:{{h.minutes}}0
+            <span class="grid__square-w1xh1 hour-sqr">
+              <ng-container *ngIf="h.hours < 10">0</ng-container>{{h.hours}}:{{h.minutes}}0
             </span>
         </ng-container>
       </div>
+
       <div #wrapperSchedule fxFlex="80" class="_total-schedule-wr" fxLayout="row">
         <ng-container *ngFor="let d of currentMonthDays">
           <div fxLayout="column">
             <ng-container *ngFor="let hs of d.hoursSchedule">
-              <a class="hour grid__square-w1xh1" style="box-sizing: initial !important;" fxLayout="column"
+              <a class="hour grid__square-w1xh1 schedule-sqr" fxLayout="column"
                  fxLayoutAlign="space-between start"
                  [ngClass]="{ 'hour__filled': hs.meal && hs.time.hours === hs.meal.time.hours }"
                  [routerLink]="['/meal', {time: hs.time, currentDay: d}]" [state]="{time: hs.time, currentDay: d}">
-                <ng-container *ngIf="hs.meal">
-                  <span>{{ hs.meal.title }}</span>
-                  <span>{{ hs.meal.kcal }}</span>
-                </ng-container>
+                <div class="__inner">
+                  <ng-container *ngIf="hs.meal">
+                    <span>{{ hs.meal.title }}</span>
+                    <span>{{ hs.meal.kcal }}</span>
+                  </ng-container>
+                </div>
               </a>
             </ng-container>
           </div>

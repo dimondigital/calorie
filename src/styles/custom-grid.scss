@@ -5,9 +5,16 @@ $height: 100vh;
 //} @else {
 //  $orient: 100vh / 5;
 //}
+@mixin flex-center {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 @media screen and (orientation: portrait) {
   $orient: 100vw / 5;
   .grid__square-w1xh05 {
+    @include flex-center;
     //display: flex;
     width: calc(#{$orient});
     max-width: calc(#{$orient});
@@ -15,14 +22,14 @@ $height: 100vh;
     //border: 2px solid black;
   }
   .grid__square-w1xh1 {
-    display: flex;
+    @include flex-center;
     width: calc(#{$orient});
     height: calc(#{$orient});
     min-height: calc(#{$orient});
     //border: 2px solid black;
-    box-sizing: initial !important;
   }
   .grid__square-w1xh2 {
+    @include flex-center;
     display: flex;
     width: calc(#{$orient});
     height: calc(#{$orient*2});
@@ -36,12 +43,14 @@ $height: 100vh;
 @media screen and (orientation: landscape) {
   $orient: 100vh / 5;
   .grid__square-w1xh05 {
+    @include flex-center;
     //display: flex;
     width: calc(#{$orient});
     height: calc(#{$orient/2});
     //border: 2px solid black;
   }
   .grid__square-w1xh1 {
+    @include flex-center;
     display: flex;
     width: calc(#{$orient});
     height: calc(#{$orient});
@@ -50,6 +59,7 @@ $height: 100vh;
     box-sizing: initial !important;
   }
   .grid__square-w1xh2 {
+    @include flex-center;
     display: flex;
     width: calc(#{$orient});
     height: calc(#{$orient*2});

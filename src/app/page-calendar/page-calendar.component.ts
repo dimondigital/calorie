@@ -26,6 +26,10 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
   public currentMonthDays: FitnessDay[] = [];
   public calendarDayHours: Time[] = [];
   public existingMeals$: Observable<Meal[]>;
+
+  private dailyScheduleHourFloorLimit: number = 7;
+  private dailyScheduleHourCeilLimit: number = 21;
+
   @ViewChild('wrapperDays') wrapperDays!: ElementRef;
   @ViewChild('wrapperSchedule') wrapperSchedule!: ElementRef;
   @ViewChild('wrapperHours') wrapperHours!: ElementRef;
@@ -52,7 +56,9 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
     this.currentMonthDays = this.getFitnessDays(now);
 
     for (let i = 0; i < 24; i++) {
-      this.calendarDayHours.push({hours: i, minutes: 0});
+      if (i > this.dailyScheduleHourFloorLimit && i < this.dailyScheduleHourCeilLimit) {
+        this.calendarDayHours.push({hours: i, minutes: 0});
+      }
     }
 
     this.existingMeals$.subscribe((meals: Meal[]) => {
@@ -60,7 +66,9 @@ export class PageCalendarComponent implements OnInit, AfterViewInit {
         for (let cmd of this.currentMonthDays) {
           let hoursSchedule: TimeMeal[] = [];
           for (let i = 0; i < 24; i++) {
-            hoursSchedule.push({time: {hours: i, minutes: 0}});
+            if (i > this.dailyScheduleHourFloorLimit && i < this.dailyScheduleHourCeilLimit) {
+              hoursSchedule.push({time: {hours: i, minutes: 0}});
+            }
           }
           // filling each day with hours schedule
           if (!cmd.hoursSchedule) cmd.hoursSchedule = [...hoursSchedule];

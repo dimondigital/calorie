@@ -1,3 +1,5 @@
+@import 'src/styles/custom-grid';
+
 .mat-icon {
   //width: 40px;
   //height: 40px;
@@ -74,6 +76,11 @@ a {
   background-color: #799CF4;
   color: white;
 }
+.hour-sqr {
+  border-bottom: 2px solid #ffffff;
+  height: calc(100% - 2px) !important;
+  box-sizing: border-box;
+}
 
 ._total-schedule-wr {
   overflow: scroll;
@@ -93,14 +100,40 @@ a {
   }
 }
 
+.schedule-sqr {
+  //background-color: black;
+  .__inner {
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    border-radius: 4px;
+  }
+
+
+
+}
+
 .day__current {
   position: relative;
-  padding: 3px;
-  line-height: 100%;
-  border-radius: 100%;
+  width: 80%;
+  height: 80%;
+  /* padding: 100%; */
+  /* line-height: 100%; */
+  border-radius: 10%;
+  font-size: x-large;
   min-width: 1em;
   color: white;
   background-color: #799CF4;
+  @include flex-center;
+}
+
+.day__calorie {
+  @include flex-center;
+  background-color: green;
+  width: 76%;
+  border-radius: 4px;
+  height: 66%;
+  color: white;
 }
 
 
